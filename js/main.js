@@ -134,6 +134,31 @@ const inputCiudad = inputs[0];
 const inputTipo = inputs[1];
 const botonBuscar = document.querySelector(".search-bar__btn");
 
+// Dropdown de precio
+const dropdown = document.getElementById("dropdown-precio");
+const dropdownTrigger = dropdown.querySelector(".dropdown__trigger");
+const dropdownLabel = dropdown.querySelector(".dropdown__label");
+let precioSeleccionado = "";
+
+dropdownTrigger.addEventListener("click", () => {
+  dropdown.classList.toggle("dropdown--open");
+});
+
+dropdown.querySelectorAll(".dropdown__option").forEach(option => {
+  option.addEventListener("click", () => {
+    precioSeleccionado = option.dataset.value;
+    dropdownLabel.textContent = option.textContent;
+    dropdownTrigger.classList.toggle("has-value", precioSeleccionado !== "");
+    dropdown.querySelectorAll(".dropdown__option").forEach(o => o.classList.remove("dropdown__option--selected"));
+    option.classList.add("dropdown__option--selected");
+    dropdown.classList.remove("dropdown--open");
+  });
+});
+
+document.addEventListener("click", (e) => {
+  if (!dropdown.contains(e.target)) dropdown.classList.remove("dropdown--open");
+});
+
 [inputCiudad, inputTipo].forEach(input => {
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") botonBuscar.click();
@@ -143,11 +168,13 @@ const botonBuscar = document.querySelector(".search-bar__btn");
 botonBuscar.addEventListener("click", () => {
   const textoCiudad = inputCiudad.value.trim().toLowerCase();
   const textoTipo = inputTipo.value.trim().toLowerCase();
+  const precioMax = precioSeleccionado === "" ? null : parseInt(precioSeleccionado);
 
   const filtrados = restaurantes.filter(r => {
     const coincideCiudad = textoCiudad === "" || r.ciudad.toLowerCase().includes(textoCiudad);
     const coincideTipo = textoTipo === "" || r.tipo.some(t => t.toLowerCase().includes(textoTipo));
-    return coincideCiudad && coincideTipo;
+    const coincidePrecio = precioMax === null || r.precio <= precioMax;
+    return coincideCiudad && coincideTipo && coincidePrecio;
   });
 
   renderizarTarjetas(filtrados);

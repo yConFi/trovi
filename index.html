@@ -43,7 +43,18 @@
         <div class="search-bar__divider"></div>
         <div class="search-bar__field">
           <span class="search-bar__icon">💶</span>
-          <input type="text" placeholder="Precio máx." />
+          <div class="dropdown" id="dropdown-precio">
+            <button class="dropdown__trigger" type="button">
+              <span class="dropdown__label">Precio máx.</span>
+              <span class="dropdown__arrow">▾</span>
+            </button>
+            <ul class="dropdown__menu">
+              <li class="dropdown__option" data-value="">Precio máx.</li>
+              <li class="dropdown__option" data-value="1">€ &mdash; Económico</li>
+              <li class="dropdown__option" data-value="2">€€ &mdash; Precio medio</li>
+              <li class="dropdown__option" data-value="3">€€€ &mdash; Especial</li>
+            </ul>
+          </div>
         </div>
         <button class="btn btn--primary search-bar__btn">Buscar</button>
       </div>
