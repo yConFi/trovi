@@ -8,6 +8,11 @@ const restaurantes = [
     numValoraciones: 342,
     ciudad: "Madrid",
     barrio: "Malasaña",
+    direccion: "Calle Ballesta, 12",
+    horario: "Lun–Vie 9:00–17:00 · Sáb–Dom 10:00–18:00",
+    descripcion: "Cafetería de especialidad con brunch todo el día. Carta de temporada con ingredientes de proximidad y el mejor aguacate de Malasaña.",
+    porQueIr: "El brunch más instagrameable de Madrid sin colas eternas.",
+    precioMedio: 14,
     precio: 2,
     precioMax: 4,
   },
@@ -19,6 +24,11 @@ const restaurantes = [
     numValoraciones: 218,
     ciudad: "Madrid",
     barrio: "Lavapiés",
+    direccion: "Calle Argumosa, 7",
+    horario: "Mar–Dom 13:30–15:30 · 20:30–23:30",
+    descripcion: "Pequeño restaurante japonés de barrio. Especialidad en yakitori a la brasa y ramen casero. Solo 20 plazas.",
+    porQueIr: "Yakitori auténtico a precio de barrio. Reserva con antelación.",
+    precioMedio: 22,
     precio: 2,
     precioMax: 4,
   },
@@ -30,6 +40,11 @@ const restaurantes = [
     numValoraciones: 511,
     ciudad: "Sevilla",
     barrio: "Utrera",
+    direccion: "Plaza Mayor, 3",
+    horario: "Todos los días 11:00–00:00",
+    descripcion: "Bar de toda la vida con las mejores tapas de la zona. Especialidad en pringá, caracoles y montaditos.",
+    porQueIr: "Tapa gratis con cada caña. El sitio donde comen los locales.",
+    precioMedio: 10,
     precio: 1,
     precioMax: 4,
   },
@@ -41,6 +56,11 @@ const restaurantes = [
     numValoraciones: 189,
     ciudad: "Barcelona",
     barrio: "Gràcia",
+    direccion: "Carrer de Verdi, 24",
+    horario: "Mar–Dom 13:00–16:00 · 20:00–23:30",
+    descripcion: "Pizzería napolitana con horno de leña importado de Italia. Masa de fermentación lenta de 48 horas y productos DOP.",
+    porQueIr: "La pizza napolitana más honesta de Barcelona. Sin artificios.",
+    precioMedio: 18,
     precio: 2,
     precioMax: 4,
   },
@@ -52,6 +72,11 @@ const restaurantes = [
     numValoraciones: 97,
     ciudad: "Valencia",
     barrio: "El Carmen",
+    direccion: "Calle dels Cavallers, 5",
+    horario: "Mié–Lun 14:00–16:30 · 21:00–23:00",
+    descripcion: "Restaurante de cocina mediterránea de mercado. El chef trabaja con pescadores locales y cambia la carta cada semana según la lonja.",
+    porQueIr: "El producto más fresco del Mediterráneo a dos pasos del centro histórico.",
+    precioMedio: 45,
     precio: 3,
     precioMax: 4,
   },
@@ -63,6 +88,11 @@ const restaurantes = [
     numValoraciones: 403,
     ciudad: "Madrid",
     barrio: "Retiro",
+    direccion: "Calle de O'Donnell, 8",
+    horario: "Lun–Dom 8:00–20:00",
+    descripcion: "Cafetería clásica madrileña con terraza interior. Conocida por sus churros con chocolate y su tostada con tomate.",
+    porQueIr: "El desayuno madrileño de toda la vida, sin prisas y con buena terraza.",
+    precioMedio: 8,
     precio: 1,
     precioMax: 4,
   },
@@ -117,6 +147,9 @@ function renderizarTarjetas(lista) {
   } else {
     grid.innerHTML = lista.map(crearTarjeta).join("");
     emptyState.style.display = "none";
+    grid.querySelectorAll(".card").forEach((card, i) => {
+      card.addEventListener("click", () => abrirModal(lista[i]));
+    });
   }
 }
 
@@ -186,6 +219,37 @@ botonBuscar.addEventListener("click", () => {
   });
 
   renderizarTarjetas(filtrados);
+});
+
+// Modal de detalle
+const modalOverlay = document.getElementById("modal-overlay");
+const modalClose = document.getElementById("modal-close");
+
+function abrirModal(restaurante) {
+  document.getElementById("modal-emoji").textContent = restaurante.emoji;
+  document.getElementById("modal-nombre").textContent = restaurante.nombre;
+  document.getElementById("modal-rating").textContent = `★ ${restaurante.valoracion} · ${restaurante.numValoraciones} valoraciones · ${restaurante.barrio}, ${restaurante.ciudad}`;
+  document.getElementById("modal-gancho").textContent = `"${restaurante.porQueIr}"`;
+  document.getElementById("modal-descripcion").textContent = restaurante.descripcion;
+  document.getElementById("modal-direccion").textContent = restaurante.direccion;
+  document.getElementById("modal-horario").textContent = restaurante.horario;
+  document.getElementById("modal-precio-medio").textContent = `Precio medio por persona: ${restaurante.precioMedio}€`;
+  document.getElementById("modal-tags").innerHTML = restaurante.tipo.map(t => `<span class="card__tag">${t}</span>`).join("");
+  modalOverlay.classList.add("modal-overlay--open");
+  document.body.style.overflow = "hidden";
+}
+
+function cerrarModal() {
+  modalOverlay.classList.remove("modal-overlay--open");
+  document.body.style.overflow = "";
+}
+
+modalClose.addEventListener("click", cerrarModal);
+modalOverlay.addEventListener("click", (e) => {
+  if (e.target === modalOverlay) cerrarModal();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") cerrarModal();
 });
 
 // Carga inicial
