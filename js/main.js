@@ -156,6 +156,7 @@ function renderizarTarjetas(lista) {
 // Filtra por chip activo
 document.querySelectorAll(".filter-chip").forEach(chip => {
   chip.addEventListener("click", () => {
+    ocultarBienvenida();
     document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("filter-chip--active"));
     chip.classList.add("filter-chip--active");
 
@@ -207,6 +208,7 @@ document.addEventListener("click", (e) => {
 });
 
 botonBuscar.addEventListener("click", () => {
+  ocultarBienvenida();
   const textoCiudad = inputCiudad.value.trim().toLowerCase();
   const textoTipo = inputTipo.value.trim().toLowerCase();
   const precioMax = precioSeleccionado === "" ? null : parseInt(precioSeleccionado);
@@ -219,6 +221,38 @@ botonBuscar.addEventListener("click", () => {
   });
 
   renderizarTarjetas(filtrados);
+});
+
+// Estado de bienvenida
+const welcomeState = document.getElementById("welcome-state");
+const esPrimeraVisita = !localStorage.getItem("trovi_visitado");
+
+if (!esPrimeraVisita) {
+  welcomeState.style.display = "none";
+  renderizarTarjetas(restaurantes);
+}
+
+function ocultarBienvenida() {
+  if (welcomeState.style.display !== "none") {
+    welcomeState.style.display = "none";
+    localStorage.setItem("trovi_visitado", "true");
+    renderizarTarjetas(restaurantes);
+  }
+}
+
+document.getElementById("hint-ciudad").addEventListener("click", () => {
+  ocultarBienvenida();
+  inputCiudad.focus();
+});
+
+document.getElementById("hint-tipo").addEventListener("click", () => {
+  ocultarBienvenida();
+  inputTipo.focus();
+});
+
+document.getElementById("hint-precio").addEventListener("click", () => {
+  ocultarBienvenida();
+  dropdownTrigger.click();
 });
 
 // Modal de detalle
