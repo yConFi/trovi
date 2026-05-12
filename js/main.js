@@ -214,7 +214,7 @@ botonBuscar.addEventListener("click", () => {
   const precioMax = precioSeleccionado === "" ? null : parseInt(precioSeleccionado);
 
   const filtrados = restaurantes.filter(r => {
-    const coincideCiudad = textoCiudad === "" || r.ciudad.toLowerCase().includes(textoCiudad);
+    const coincideCiudad = textoCiudad === "" || r.ciudad.toLowerCase().includes(textoCiudad) || r.barrio.toLowerCase().includes(textoCiudad);
     const coincideTipo = textoTipo === "" || r.tipo.some(t => t.toLowerCase().includes(textoTipo));
     const coincidePrecio = precioMax === null || r.precio <= precioMax;
     return coincideCiudad && coincideTipo && coincidePrecio;
