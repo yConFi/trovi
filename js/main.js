@@ -129,24 +129,26 @@ document.querySelectorAll(".filter-chip").forEach(chip => {
 });
 
 // Lógica del botón Buscar
-const inputCiudad = document.querySelector(".search-bar__field input");
+const inputs = document.querySelectorAll(".search-bar__field input");
+const inputCiudad = inputs[0];
+const inputTipo = inputs[1];
 const botonBuscar = document.querySelector(".search-bar__btn");
 
-inputCiudad.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") botonBuscar.click();
+[inputCiudad, inputTipo].forEach(input => {
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") botonBuscar.click();
+  });
 });
 
 botonBuscar.addEventListener("click", () => {
   const textoCiudad = inputCiudad.value.trim().toLowerCase();
+  const textoTipo = inputTipo.value.trim().toLowerCase();
 
-  if (textoCiudad === "") {
-    renderizarTarjetas(restaurantes);
-    return;
-  }
-
-  const filtrados = restaurantes.filter(r =>
-    r.ciudad.toLowerCase().includes(textoCiudad)
-  );
+  const filtrados = restaurantes.filter(r => {
+    const coincideCiudad = textoCiudad === "" || r.ciudad.toLowerCase().includes(textoCiudad);
+    const coincideTipo = textoTipo === "" || r.tipo.some(t => t.toLowerCase().includes(textoTipo));
+    return coincideCiudad && coincideTipo;
+  });
 
   renderizarTarjetas(filtrados);
 });
