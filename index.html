@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trovi — Descubre dónde comer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">Trovi</a>
+      <nav class="nav">
+        <a href="#">Explorar</a>
+        <a href="#">Cómo funciona</a>
+        <button class="btn btn--outline">Iniciar sesión</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <h1 class="hero__title">Descubre dónde comer,<br />sin saber qué buscar.</h1>
+      <p class="hero__subtitle">Pon tus filtros y Trovi te muestra los mejores sitios que aún no conoces.</p>
+
+      <!-- BARRA DE BÚSQUEDA -->
+      <div class="search-bar">
+        <div class="search-bar__field">
+          <span class="search-bar__icon">📍</span>
+          <input type="text" placeholder="Ciudad o zona" />
+        </div>
+        <div class="search-bar__divider"></div>
+        <div class="search-bar__field">
+          <span class="search-bar__icon">🍽️</span>
+          <input type="text" placeholder="Tipo de comida" />
+        </div>
+        <div class="search-bar__divider"></div>
+        <div class="search-bar__field">
+          <span class="search-bar__icon">💶</span>
+          <input type="text" placeholder="Precio máx." />
+        </div>
+        <button class="btn btn--primary search-bar__btn">Buscar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTROS -->
+  <section class="filters">
+    <div class="container filters__inner">
+      <button class="filter-chip filter-chip--active">Todo</button>
+      <button class="filter-chip">Restaurantes</button>
+      <button class="filter-chip">Cafeterías</button>
+      <button class="filter-chip">Bares</button>
+      <button class="filter-chip">Japonesa</button>
+      <button class="filter-chip">Italiana</button>
+      <button class="filter-chip">Mediterránea</button>
+      <button class="filter-chip">Tapas</button>
+      <button class="filter-chip">Brunch</button>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <main class="container results">
+    <h2 class="results__title">Descubrimientos cerca de Madrid</h2>
+    <p class="results__count">124 sitios encontrados</p>
+
+    <div class="cards-grid" id="cards-grid">
+      <!-- Las tarjetas se generan desde main.js -->
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="logo">Trovi</span>
+      <p>© 2026 Trovi. Hecho con ganas en España.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
