@@ -132,6 +132,10 @@ document.querySelectorAll(".filter-chip").forEach(chip => {
 const inputCiudad = document.querySelector(".search-bar__field input");
 const botonBuscar = document.querySelector(".search-bar__btn");
 
+inputCiudad.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") botonBuscar.click();
+});
+
 botonBuscar.addEventListener("click", () => {
   const textoCiudad = inputCiudad.value.trim().toLowerCase();
 
