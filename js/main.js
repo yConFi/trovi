@@ -128,5 +128,24 @@ document.querySelectorAll(".filter-chip").forEach(chip => {
   });
 });
 
+// Lógica del botón Buscar
+const inputCiudad = document.querySelector(".search-bar__field input");
+const botonBuscar = document.querySelector(".search-bar__btn");
+
+botonBuscar.addEventListener("click", () => {
+  const textoCiudad = inputCiudad.value.trim().toLowerCase();
+
+  if (textoCiudad === "") {
+    renderizarTarjetas(restaurantes);
+    return;
+  }
+
+  const filtrados = restaurantes.filter(r =>
+    r.ciudad.toLowerCase().includes(textoCiudad)
+  );
+
+  renderizarTarjetas(filtrados);
+});
+
 // Carga inicial
 renderizarTarjetas(restaurantes);
