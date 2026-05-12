@@ -3,14 +3,14 @@ const restaurantes = [
   {
     nombre: "La Pepita",
     emoji: "🥑",
-    tipo: ["Brunch", "Cafetería"],
+    tipo: ["Brunch", "Cafeterías"],
     valoracion: 4.8,
     numValoraciones: 342,
     ciudad: "Madrid",
     barrio: "Malasaña",
     direccion: "Calle Ballesta, 12",
     horario: "Lun–Vie 9:00–17:00 · Sáb–Dom 10:00–18:00",
-    descripcion: "Cafetería de especialidad con brunch todo el día. Carta de temporada con ingredientes de proximidad y el mejor aguacate de Malasaña.",
+    descripcion: "Cafeterías de especialidad con brunch todo el día. Carta de temporada con ingredientes de proximidad y el mejor aguacate de Malasaña.",
     porQueIr: "El brunch más instagrameable de Madrid sin colas eternas.",
     precioMedio: 14,
     precio: 2,
@@ -19,7 +19,7 @@ const restaurantes = [
   {
     nombre: "Yakitori Taro",
     emoji: "🍱",
-    tipo: ["Japonesa", "Restaurante"],
+    tipo: ["Japonesa", "Restaurantes"],
     valoracion: 4.6,
     numValoraciones: 218,
     ciudad: "Madrid",
@@ -35,7 +35,7 @@ const restaurantes = [
   {
     nombre: "Zezeo",
     emoji: "🍺",
-    tipo: ["Tapas", "Bar"],
+    tipo: ["Tapas", "Bares"],
     valoracion: 4.5,
     numValoraciones: 511,
     ciudad: "Sevilla",
@@ -51,7 +51,7 @@ const restaurantes = [
   {
     nombre: "Toto Pizza",
     emoji: "🍕",
-    tipo: ["Italiana", "Restaurante"],
+    tipo: ["Italiana", "Restaurantes"],
     valoracion: 4.7,
     numValoraciones: 189,
     ciudad: "Barcelona",
@@ -67,14 +67,14 @@ const restaurantes = [
   {
     nombre: "Mar & Brasa",
     emoji: "🦞",
-    tipo: ["Mediterránea", "Restaurante"],
+    tipo: ["Mediterránea", "Restaurantes"],
     valoracion: 4.9,
     numValoraciones: 97,
     ciudad: "Valencia",
     barrio: "El Carmen",
     direccion: "Calle dels Cavallers, 5",
     horario: "Mié–Lun 14:00–16:30 · 21:00–23:00",
-    descripcion: "Restaurante de cocina mediterránea de mercado. El chef trabaja con pescadores locales y cambia la carta cada semana según la lonja.",
+    descripcion: "Restaurantes de cocina mediterránea de mercado. El chef trabaja con pescadores locales y cambia la carta cada semana según la lonja.",
     porQueIr: "El producto más fresco del Mediterráneo a dos pasos del centro histórico.",
     precioMedio: 45,
     precio: 3,
@@ -83,14 +83,14 @@ const restaurantes = [
   {
     nombre: "Café Colón",
     emoji: "☕",
-    tipo: ["Cafetería", "Brunch"],
+    tipo: ["Cafeterías", "Brunch"],
     valoracion: 4.4,
     numValoraciones: 403,
     ciudad: "Madrid",
     barrio: "Retiro",
     direccion: "Calle de O'Donnell, 8",
     horario: "Lun–Dom 8:00–20:00",
-    descripcion: "Cafetería clásica madrileña con terraza interior. Conocida por sus churros con chocolate y su tostada con tomate.",
+    descripcion: "Cafeterías clásica madrileña con terraza interior. Conocida por sus churros con chocolate y su tostada con tomate.",
     porQueIr: "El desayuno madrileño de toda la vida, sin prisas y con buena terraza.",
     precioMedio: 8,
     precio: 1,
@@ -165,7 +165,7 @@ document.querySelectorAll(".filter-chip").forEach(chip => {
       renderizarTarjetas(restaurantes);
     } else {
       const filtrados = restaurantes.filter(r => r.tipo.includes(filtro));
-      renderizarTarjetas(filtrados.length > 0 ? filtrados : restaurantes);
+      renderizarTarjetas(filtrados);
     }
   });
 });
