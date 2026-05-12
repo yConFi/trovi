@@ -109,7 +109,15 @@ function crearTarjeta(restaurante) {
 // Renderiza todas las tarjetas en el grid
 function renderizarTarjetas(lista) {
   const grid = document.getElementById("cards-grid");
-  grid.innerHTML = lista.map(crearTarjeta).join("");
+  const emptyState = document.getElementById("empty-state");
+
+  if (lista.length === 0) {
+    grid.innerHTML = "";
+    emptyState.style.display = "block";
+  } else {
+    grid.innerHTML = lista.map(crearTarjeta).join("");
+    emptyState.style.display = "none";
+  }
 }
 
 // Filtra por chip activo
